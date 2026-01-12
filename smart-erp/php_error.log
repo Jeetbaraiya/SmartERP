@@ -1,0 +1,33 @@
+[12-Jan-2026 18:23:02 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 407
+[12-Jan-2026 18:23:02 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 413
+[12-Jan-2026 18:23:41 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 407
+[12-Jan-2026 18:23:41 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 413
+[12-Jan-2026 19:30:26 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[12-Jan-2026 19:30:26 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[12-Jan-2026 19:30:26 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[12-Jan-2026 19:30:47 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[12-Jan-2026 19:30:47 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[12-Jan-2026 20:56:35 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[12-Jan-2026 20:56:35 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[12-Jan-2026 21:01:15 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[12-Jan-2026 21:01:15 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[12-Jan-2026 21:02:44 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[12-Jan-2026 21:02:44 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[12-Jan-2026 21:04:58 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[12-Jan-2026 21:04:58 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[12-Jan-2026 21:08:36 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[12-Jan-2026 21:08:36 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[12-Jan-2026 21:08:36 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[12-Jan-2026 21:11:41 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[12-Jan-2026 21:11:41 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[12-Jan-2026 21:11:41 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[12-Jan-2026 21:34:17 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[12-Jan-2026 21:34:17 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[12-Jan-2026 21:41:39 Asia/Kolkata] PHP Parse error:  syntax error, unexpected token "endif", expecting end of file in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\admin\includes\sidebar.php on line 98
+[12-Jan-2026 21:41:42 Asia/Kolkata] PHP Parse error:  syntax error, unexpected token "endif", expecting end of file in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\admin\includes\sidebar.php on line 98
+[12-Jan-2026 21:41:44 Asia/Kolkata] PHP Parse error:  syntax error, unexpected token "endif", expecting end of file in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\admin\includes\sidebar.php on line 98
+[12-Jan-2026 21:42:20 Asia/Kolkata] PHP Parse error:  syntax error, unexpected token "endif", expecting end of file in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\admin\includes\sidebar.php on line 98
+[12-Jan-2026 21:42:31 Asia/Kolkata] PHP Parse error:  syntax error, unexpected token "endif", expecting end of file in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\admin\includes\sidebar.php on line 98
+[12-Jan-2026 21:42:35 Asia/Kolkata] PHP Parse error:  syntax error, unexpected token "endif", expecting end of file in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\admin\includes\sidebar.php on line 98
+[12-Jan-2026 21:52:54 Asia/Kolkata] Mailer Error: SMTP Error: Could not authenticate.
+[12-Jan-2026 21:53:19 Asia/Kolkata] Mailer Error: SMTP Error: Could not authenticate.

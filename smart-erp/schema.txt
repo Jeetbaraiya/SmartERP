@@ -1,0 +1,16 @@
+Field	Type	Null	Key	Default	Extra
+id	int(11)	NO	PRI	NULL	auto_increment
+user_id	int(11)	NO	MUL	NULL	
+service_id	int(11)	NO	MUL	NULL	
+booking_date	date	YES		NULL	
+booking_slot	varchar(50)	YES		NULL	
+request_date	date	NO		current_timestamp()	
+status	enum('pending','approved','completed','rejected')	NO		pending	
+comments	text	YES		NULL	
+created_at	timestamp	NO		current_timestamp()	
+payment_method	enum('cash','razorpay')	YES		cash	
+payment_status	enum('pending','paid')	YES		pending	
+rating	int(1)	YES		NULL	
+review	text	YES		NULL	
+refund_status	enum('pending','refunded','none')	YES		none	
+payment_id	varchar(255)	YES		NULL	

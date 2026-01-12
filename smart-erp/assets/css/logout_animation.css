@@ -1,0 +1,127 @@
+/* Walking/Falling Animation Button CSS */
+:root {
+    --btn-height: 50px;
+}
+
+.btn-animate-logout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: var(--btn-height);
+    background: rgba(239, 68, 68, 0.1);
+    /* Subtle red tint */
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 16px;
+    /* More rounded */
+    padding: 0 24px;
+    color: #ef4444;
+    /* Red text */
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    /* Changed to hidden for ripple effect if needed, but keeping simple */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.05);
+}
+
+/* Hover State */
+.btn-animate-logout:hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+    box-shadow: 0 10px 20px rgba(239, 68, 68, 0.2);
+}
+
+.btn-text {
+    z-index: 2;
+}
+
+.animation-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+/* The Door */
+.door {
+    width: 18px;
+    height: 28px;
+    background: #1e293b;
+    /* Dark door for contrast */
+    border-radius: 2px;
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2px;
+    transition: all 0.3s ease;
+}
+
+.btn-animate-logout:hover .door {
+    background: white;
+    /* Door turns white on red bg */
+}
+
+.door::after {
+    content: '';
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+}
+
+.btn-animate-logout:hover .door::after {
+    background: #ef4444;
+}
+
+/* The Walking Figure */
+.walker {
+    position: absolute;
+    right: 22px;
+    font-size: 16px;
+    color: #ef4444;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --figure-duration: 200ms;
+}
+
+.btn-animate-logout:hover .walker {
+    opacity: 1;
+    transform: translateX(5px);
+    color: white;
+}
+
+/* Falling Animation */
+.btn-animate-logout.falling .walker {
+    animation: spin 1000ms infinite linear;
+    bottom: -150px;
+    opacity: 0;
+    right: 1px;
+    transition:
+        transform calc(var(--figure-duration) * 1ms) linear,
+        bottom calc(var(--figure-duration) * 1ms) cubic-bezier(0.7, 0.1, 1, 1) 100ms,
+        opacity calc(var(--figure-duration) * 0.25ms) linear calc(var(--figure-duration) * 0.75ms);
+    z-index: 1000;
+    /* High z-index to fall over other elements */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
