@@ -1,12 +1,16 @@
 <?php
 // user/my_requests.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once '../config/db.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
     header("Location: ../auth/login.php");
     exit();
 }
+
+include 'includes/auto_expire.php';
 
 // Handle Rating Submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_rating'])) {
@@ -332,25 +336,48 @@ $requests = $conn->query($sql);
                                             <?php endif; ?>
                                         </td>
                                         <td class="text-end">
-                                            <?php if ($s == 'completed'): ?>
-                                                <a href="invoice.php?id=<?php echo $row['id']; ?>"
-                                                    class="btn btn-light btn-action border text-dark mb-1"
-                                                    style="background: var(--bg-hover); color: var(--text-main) !important; border-color: var(--border-color) !important;">
-                                                    <i class="fas fa-file-invoice me-1"></i> Invoice
-                                                </a>
-                                            <?php endif; ?>
+                                            <div class="d-flex gap-2 justify-content-end align-items-center">
+                                                <?php if ($s == 'completed' || $s == 'rejected' || $row['refund_status'] == 'refunded'): ?>
+                                                    <a href="request_service.php?rebook_id=<?php echo $row['id']; ?>"
+                                                        class="btn btn-primary-custom btn-action d-flex align-items-center">
+                                                        <i class="fas fa-redo-alt me-2"></i> Book Again
+                                                    </a>
+                                                <?php elseif ($s == 'pending' || $s == 'approved'): ?>
+                                                    <button class="btn btn-sm btn-outline-primary rounded-pill fw-800 px-3"
+                                                        onclick="openTrackingModal('<?php echo $s; ?>', '<?php echo date('M d, Y', strtotime($row['created_at'])); ?>', '<?php echo $row['service_name']; ?>', '<?php echo $row['id']; ?>')">
+                                                        <i class="fas fa-route me-1"></i> Track
+                                                    </button>
+                                                <?php else: ?>
+                                                    <span class="text-muted small fw-600">-</span>
+                                                <?php endif; ?>
 
-                                            <?php if ($s == 'completed' || $s == 'rejected' || $row['refund_status'] == 'refunded'): ?>
-                                                <a href="request_service.php?rebook_id=<?php echo $row['id']; ?>"
-                                                    class="btn btn-primary-custom btn-action text-white"
-                                                    style="font-size: 0.75rem; padding: 6px 12px;">
-                                                    <i class="fas fa-redo-alt me-1"></i> Book Again
-                                                </a>
-                                            <?php elseif ($s == 'pending' || $s == 'approved'): ?>
-                                                <span class="text-muted small fw-600">In Progress</span>
-                                            <?php else: ?>
-                                                <span class="text-muted small fw-600">-</span>
-                                            <?php endif; ?>
+                                                <?php
+                                                // Show Invoice Logic:
+                                                // 1. MUST NOT be Refunded
+                                                // 2. AND (Status is Completed OR (Payment is Paid AND NOT Cash))
+                                                $is_refunded = ($row['refund_status'] == 'refunded');
+                                                $is_completed = ($s == 'completed');
+                                                $is_online_paid = ($row['payment_status'] == 'paid' && strtolower($row['payment_method']) != 'cash');
+
+                                                $show_invoice = !$is_refunded && ($is_completed || $is_online_paid);
+                                                ?>
+
+                                                <?php if ($show_invoice): ?>
+                                                    <a href="invoice.php?id=<?php echo $row['id']; ?>" target="_blank"
+                                                        class="btn btn-light btn-action border text-dark d-flex align-items-center"
+                                                        style="background: var(--bg-hover); color: var(--text-main) !important; border-color: var(--border-color) !important;">
+                                                        <i class="fas fa-file-invoice me-2"></i> Invoice
+                                                    </a>
+                                                <?php else: ?>
+                                                    <!-- Invisible Placeholder to maintain layout alignment -->
+                                                    <a href="#"
+                                                        class="btn btn-light btn-action border invisible d-flex align-items-center"
+                                                        aria-hidden="true" tabindex="-1"
+                                                        style="background: var(--bg-hover); border-color: var(--border-color) !important;">
+                                                        <i class="fas fa-file-invoice me-2"></i> Invoice
+                                                    </a>
+                                                <?php endif; ?>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>
@@ -404,6 +431,173 @@ $requests = $conn->query($sql);
         </div>
     </div>
 
+    <!-- Tracking Modal -->
+    <div class="modal fade" id="trackingModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg rounded-5">
+                <div class="modal-header border-0 p-4 pb-0">
+                    <div>
+                        <h5 class="modal-title fw-800 text-main mb-1">Request Timeline</h5>
+                        <p class="text-muted small fw-600 mb-0">Tracking ID: #SR-<span id="trackId"></span></p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-5">
+                    <!-- Timeline Component -->
+                    <div class="timeline-steps aos-animate">
+                        <div class="timeline-step" id="step-requested">
+                            <div class="timeline-content">
+                                <div class="inner-circle"></div>
+                                <p class="h6 mt-3 mb-1 fw-800 text-main">Requested</p>
+                                <p class="h6 text-muted mb-0 mb-lg-0 small" id="trackDate">Date</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step" id="step-approved">
+                            <div class="timeline-content">
+                                <div class="inner-circle"></div>
+                                <p class="h6 mt-3 mb-1 fw-800 text-main">Approved</p>
+                                <p class="h6 text-muted mb-0 mb-lg-0 small">Admin Verified</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step" id="step-inprogress">
+                            <div class="timeline-content">
+                                <div class="inner-circle"></div>
+                                <p class="h6 mt-3 mb-1 fw-800 text-main">In Progress</p>
+                                <p class="h6 text-muted mb-0 mb-lg-0 small">Work Started</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step" id="step-completed">
+                            <div class="timeline-content">
+                                <div class="inner-circle"></div>
+                                <p class="h6 mt-3 mb-1 fw-800 text-main">Completed</p>
+                                <p class="h6 text-muted mb-0 mb-lg-0 small">Service Done</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Timeline CSS */
+        .timeline-steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .timeline-steps .timeline-step {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin: 0 1rem;
+            flex: 1;
+            opacity: 0.5;
+            /* Default inactive opacity */
+            transition: all 0.3s ease;
+        }
+
+        .timeline-steps .timeline-step.active {
+            opacity: 1;
+        }
+
+        .timeline-steps .timeline-step.completed .inner-circle {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .timeline-steps .timeline-step.completed .inner-circle:before {
+            content: '\f00c';
+            /* FontAwesome Check */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 10px;
+        }
+
+        .timeline-steps .timeline-step.active-current .inner-circle {
+            background-color: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .timeline-steps .timeline-step.active-current .inner-circle:before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-steps .timeline-step:not(:last-child):after {
+            content: "";
+            position: absolute;
+            top: 20px;
+            /* Center with circle */
+            left: 50%;
+            width: 100%;
+            height: 4px;
+            background-color: var(--border-color);
+            z-index: -1;
+            transform: translateY(-50%);
+        }
+
+        .timeline-steps .timeline-step.completed:not(:last-child):after {
+            background-color: var(--primary);
+        }
+
+        .timeline-steps .timeline-step .inner-circle {
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            border: 3px solid var(--border-color);
+            background-color: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .timeline-steps .timeline-content {
+            width: 100%;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-steps {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 20px;
+            }
+
+            .timeline-steps .timeline-step {
+                flex-direction: row;
+                margin: 0 0 30px 0;
+                width: 100%;
+                text-align: left;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .timeline-steps .timeline-step:not(:last-child):after {
+                width: 4px;
+                height: 100%;
+                top: 50%;
+                left: 20px;
+                /* Align with circle center */
+                transform: translateX(-50%);
+            }
+
+            .timeline-steps .timeline-content {
+                text-align: left;
+            }
+        }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/logout_animation.js"></script>
     <script src="../assets/js/theme.js"></script>
@@ -413,6 +607,43 @@ $requests = $conn->query($sql);
             document.getElementById('ratingServiceName').textContent = name;
             new bootstrap.Modal(document.getElementById('ratingModal')).show();
         }
+
+        function openTrackingModal(status, dateStr, serviceName, id) {
+            document.getElementById('trackId').innerText = id;
+            document.getElementById('trackDate').innerText = dateStr;
+
+            // Reset classes
+            const steps = ['requested', 'approved', 'inprogress', 'completed'];
+            steps.forEach(step => {
+                const el = document.getElementById('step-' + step);
+                el.classList.remove('completed', 'active', 'active-current');
+            });
+
+            // Logic
+            // Step 1: Requested - Always completed if it exists
+            document.getElementById('step-requested').classList.add('completed', 'active');
+
+            const approved = document.getElementById('step-approved');
+            const inprogress = document.getElementById('step-inprogress');
+            const completed = document.getElementById('step-completed');
+
+            if (status === 'pending') {
+                document.getElementById('step-requested').classList.remove('completed');
+                document.getElementById('step-requested').classList.add('active-current', 'active');
+            } else if (status === 'approved') {
+                approved.classList.add('completed', 'active');
+                // Assume "In Progress" is current if approved
+                inprogress.classList.add('active-current', 'active');
+            } else if (status === 'completed') {
+                approved.classList.add('completed', 'active');
+                inprogress.classList.add('completed', 'active');
+                completed.classList.add('completed', 'active'); // Completed is final state
+            } else if (status === 'rejected') {
+                // Handle rejected state if needed, maybe just show requested and a rejected badge
+            }
+
+            // Show Modal
+            new bootstrap.Modal(document.getElementById('trackingModal')).show(); }
     </script>
 </body>
 

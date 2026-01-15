@@ -213,107 +213,130 @@ $total_discount_percent = floatval($disc_row['total_percent']);
 
         <!-- Main Content -->
         <main class="main-content">
-            <header class="d-flex justify-content-between align-items-center mb-5">
-                <div>
+            <!-- Search & Header -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
                     <h4 class="fw-800 mb-1">Premium Services</h4>
                     <p class="text-muted fw-600 mb-0 small text-uppercase" style="letter-spacing: 1px;">On-demand
                         assistance for your home</p>
                 </div>
-                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-800 shadow-sm"
-                    style="width: 48px; height: 48px;">
-                    <?php echo strtoupper(substr($_SESSION['name'], 0, 1)); ?>
+                <div class="col-lg-6 mt-3 mt-lg-0">
+                    <div class="position-relative">
+                        <span class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" id="searchInput"
+                            class="form-control form-control-lg border-0 shadow-sm ps-5 rounded-pill"
+                            style="background: var(--bg-card); color: var(--text-main);"
+                            placeholder="Find a service (e.g. AC Repair, Cleaning)...">
+                    </div>
                 </div>
-            </header>
+            </div>
 
-            <div class="row g-4">
+            <div class="row g-4" id="serviceGrid">
                 <?php while ($row = $services->fetch_assoc()): ?>
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6 service-item">
                         <div class="card-custom">
                             <div>
-                                <div class="icon-box">
+                                <div class="d-flex justify-content-between align-items-start">
                                     <?php
-                                    $n = strtolower($row['name']);
-                                    $icon = 'fa-concierge-bell';
-                                    if (strpos($n, 'laundry') !== false)
-                                        $icon = 'fa-tshirt';
-                                    elseif (strpos($n, 'pest') !== false)
-                                        $icon = 'fa-bug';
-                                    elseif (strpos($n, 'carpenter') !== false)
-                                        $icon = 'fa-hammer';
-                                    elseif (strpos($n, 'garden') !== false)
-                                        $icon = 'fa-leaf';
-                                    elseif (strpos($n, 'paint') !== false)
-                                        $icon = 'fa-paint-roller';
-                                    elseif (strpos($n, 'sofa') !== false)
-                                        $icon = 'fa-couch';
-                                    elseif (strpos($n, 'ro ') !== false || strpos($n, 'purifier') !== false)
-                                        $icon = 'fa-bottle-water';
-                                    elseif (strpos($n, 'cctv') !== false || strpos($n, 'camera') !== false)
-                                        $icon = 'fa-video';
-                                    elseif (strpos($n, 'ac ') !== false || strpos($n, 'air cond') !== false)
-                                        $icon = 'fa-snowflake';
-                                    elseif (strpos($n, 'car') !== false)
-                                        $icon = 'fa-car';
-                                    elseif (strpos($n, 'electric') !== false)
-                                        $icon = 'fa-bolt';
-                                    elseif (strpos($n, 'plumb') !== false)
-                                        $icon = 'fa-wrench';
-                                    elseif (strpos($n, 'water') !== false)
-                                        $icon = 'fa-tint';
-                                    elseif (strpos($n, 'clean') !== false)
-                                        $icon = 'fa-broom';
+                                    // Include Icon Helper securely
+                                    $icon_helper_path = __DIR__ . '/../utils/icons.php';
+                                    if (file_exists($icon_helper_path)) {
+                                        require_once $icon_helper_path;
+                                        $icon = IconHelper::getIcon($row['name']);
+                                    } else {
+                                        $icon = 'fa-concierge-bell';
+                                    }
                                     ?>
                                     <i class="fas <?php echo $icon; ?>"></i>
                                 </div>
-                                <h4 class="fw-800 mb-2"><?php echo $row['name']; ?></h4>
-                                <p class="text-muted small fw-600 mb-4"><?php echo $row['description']; ?></p>
-                            </div>
-                            <div>
-                                <?php
-                                $price = $row['price'];
-                                $savings = 0;
-                                $original_price = $price;
-                                $has_discount = false;
-
-                                // Use the pre-fetched total_discount_percent
-                                if (isset($total_discount_percent) && $total_discount_percent > 0 && $total_discount_percent < 100) {
-                                    $factor = 1 - ($total_discount_percent / 100);
-                                    $original_price = $price / $factor;
-                                    $savings = $original_price - $price;
-                                    $has_discount = true;
-                                }
-                                ?>
-
-                                <div class="price-tag mb-1">
-                                    <?php if ($has_discount): ?>
-                                        <small
-                                            class="text-muted text-decoration-line-through fw-600 fs-6 me-2 align-middle">₹<?php echo number_format($original_price); ?></small>
-                                    <?php endif; ?>
-                                    <span class="align-middle">₹<?php echo number_format($price); ?></span>
-                                </div>
-
-                                <?php if ($has_discount && $savings > 0): ?>
-                                    <div class="small fw-700 text-success mb-3">
-                                        <i class="fas fa-arrow-down"></i> Save ₹<?php echo number_format($savings); ?>
-                                    </div>
-                                <?php else: ?>
-                                    <div class="mb-4"></div>
+                                <?php if ($row['price'] > 500): ?>
+                                    <span
+                                        class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 fw-700">Premium</span>
                                 <?php endif; ?>
-
-                                <a href="request_service.php?id=<?php echo $row['id']; ?>" class="btn btn-premium">Book
-                                    Now</a>
                             </div>
+
+                            <h4 class="fw-800 mb-2 service-name"><?php echo $row['name']; ?></h4>
+                            <p class="text-muted small fw-600 mb-4"><?php echo $row['description']; ?></p>
+                        </div>
+                        <div>
+                            <?php
+                            $price = $row['price'];
+                            $savings = 0;
+                            $original_price = $price;
+                            $has_discount = false;
+
+                            // Use the pre-fetched total_discount_percent
+                            if (isset($total_discount_percent) && $total_discount_percent > 0 && $total_discount_percent < 100) {
+                                $factor = 1 - ($total_discount_percent / 100);
+                                $original_price = $price / $factor;
+                                $savings = $original_price - $price;
+                                $has_discount = true;
+                            }
+                            ?>
+
+                            <div class="d-flex align-items-end gap-2 mb-4">
+                                <h3 class="fw-900 text-primary mb-0">₹<?php echo number_format($price); ?></h3>
+                                <?php if ($has_discount): ?>
+                                    <small
+                                        class="text-muted text-decoration-line-through fw-600 mb-1">₹<?php echo number_format($original_price); ?></small>
+                                <?php endif; ?>
+                            </div>
+
+                            <?php if ($has_discount && $savings > 0): ?>
+                                <div
+                                    class="small fw-700 text-success mb-3 p-2 bg-success bg-opacity-10 rounded-3 d-inline-block">
+                                    <i class="fas fa-arrow-down me-1"></i> Save ₹<?php echo number_format($savings); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <a href="request_service.php?id=<?php echo $row['id']; ?>"
+                                class="btn btn-premium d-flex align-items-center justify-content-center gap-2">
+                                Book Now <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                <?php endwhile; ?>
-            </div>
-        </main>
+                </div>
+            <?php endwhile; ?>
     </div>
 
-    <!-- Scripts -->
+    <div id="noResults" class="text-center py-5 d-none">
+        <i class="fas fa-search fa-3x text-muted mb-3 opacity-25"></i>
+        <h5 class="fw-bold text-muted">No services found</h5>
+        <p class="text-muted small">Try searching for something else like 'cleaning' or 'repair'</p>
+    </div>
+    </main>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/logout_animation.js"></script>
-    <script src="../assets/js/theme.js"></script>
+
+    <script>
+        // Real-time Search Filter
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            const filter = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.service-item');
+            let hasVisible = false;
+
+            cards.forEach(card => {
+                const title = card.querySelector('.service-name').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+
+                if (title.includes(filter) || desc.includes(filter)) {
+                    card.classList.remove('d-none');
+                    hasVisible = true;
+                } else {
+                    card.classList.add('d-none');
+                }
+            });
+
+            // Show/Hide "No Results" message
+            const noResults = document.getElementById('noResults');
+            if (!hasVisible) noResults.classList.remove('d-none');
+            else noResults.classList.add('d-none');
+        });
+    </script>
 </body>
 
 </html>

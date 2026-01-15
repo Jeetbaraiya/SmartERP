@@ -217,36 +217,8 @@ $total_discount_percent = floatval($disc_row['total_percent']);
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <div class="icon-box">
                                     <?php
-                                    $n = strtolower($row['name']);
-                                    $icon = 'fa-concierge-bell';
-                                    if (strpos($n, 'laundry') !== false)
-                                        $icon = 'fa-tshirt';
-                                    elseif (strpos($n, 'pest') !== false)
-                                        $icon = 'fa-bug';
-                                    elseif (strpos($n, 'carpenter') !== false)
-                                        $icon = 'fa-hammer';
-                                    elseif (strpos($n, 'garden') !== false)
-                                        $icon = 'fa-leaf';
-                                    elseif (strpos($n, 'paint') !== false)
-                                        $icon = 'fa-paint-roller';
-                                    elseif (strpos($n, 'sofa') !== false)
-                                        $icon = 'fa-couch';
-                                    elseif (strpos($n, 'ro ') !== false || strpos($n, 'purifier') !== false)
-                                        $icon = 'fa-bottle-water';
-                                    elseif (strpos($n, 'cctv') !== false || strpos($n, 'camera') !== false)
-                                        $icon = 'fa-video';
-                                    elseif (strpos($n, 'ac ') !== false || strpos($n, 'air cond') !== false)
-                                        $icon = 'fa-snowflake';
-                                    elseif (strpos($n, 'car') !== false)
-                                        $icon = 'fa-car';
-                                    elseif (strpos($n, 'electric') !== false)
-                                        $icon = 'fa-bolt';
-                                    elseif (strpos($n, 'plumb') !== false)
-                                        $icon = 'fa-wrench';
-                                    elseif (strpos($n, 'water') !== false)
-                                        $icon = 'fa-tint';
-                                    elseif (strpos($n, 'clean') !== false)
-                                        $icon = 'fa-broom';
+                                    require_once '../utils/icons.php';
+                                    $icon = IconHelper::getIcon($row['name']);
                                     ?>
                                     <i class="fas <?php echo $icon; ?>"></i>
                                 </div>
@@ -315,9 +287,16 @@ $total_discount_percent = floatval($disc_row['total_percent']);
                 </div>
                 <form method="POST">
                     <div class="modal-body p-4">
+                        <div class="text-center mb-4">
+                            <div class="icon-box mx-auto mb-2" id="iconPreview" style="background: var(--bg-hover);">
+                                <i class="fas fa-concierge-bell"></i>
+                            </div>
+                            <small class="text-muted fw-700">Icon Preview</small>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label fw-700 small text-muted text-uppercase">Service Name</label>
-                            <input type="text" name="name" class="form-control rounded-3 py-2 fw-600" required>
+                            <input type="text" name="name" id="serviceNameInput"
+                                class="form-control rounded-3 py-2 fw-600" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-700 small text-muted text-uppercase">Description</label>
@@ -344,6 +323,40 @@ $total_discount_percent = floatval($disc_row['total_percent']);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/logout_animation.js"></script>
     <script src="../assets/js/theme.js"></script>
+    <script>
+        // Live Icon Preview Logic
+        document.getElementById('serviceNameInput').addEventListener('input', function () {
+            const name = this.value.toLowerCase();
+            let icon = 'fa-concierge-bell';
+
+            const icons = {
+                'laundry': 'fa-tshirt', 'wash': 'fa-tshirt', 'iron': 'fa-tshirt',
+                'pest': 'fa-bug', 'insect': 'fa-bug',
+                'carpenter': 'fa-hammer', 'wood': 'fa-hammer',
+                'garden': 'fa-leaf', 'plant': 'fa-seedling',
+                'paint': 'fa-paint-roller', 'wall': 'fa-palette',
+                'sofa': 'fa-couch',
+                'ro ': 'fa-bottle-water', 'water': 'fa-tint',
+                'cctv': 'fa-video', 'camera': 'fa-video',
+                'ac ': 'fa-snowflake', 'cooling': 'fa-snowflake',
+                'car': 'fa-car', 'vehicle': 'fa-car',
+                'electric': 'fa-bolt', 'power': 'fa-plug',
+                'plumb': 'fa-wrench', 'pipe': 'fa-faucet',
+                'clean': 'fa-broom', 'maid': 'fa-broom',
+                'gym': 'fa-dumbbell', 'fitness': 'fa-dumbbell'
+            };
+
+            for (const [key, val] of Object.entries(icons)) {
+                if (name.includes(key)) {
+                    icon = val;
+                    break;
+                }
+            }
+
+            const preview = document.getElementById('iconPreview').querySelector('i');
+            preview.className = 'fas ' + icon;
+        });
+    </script>
 </body>
 
 </html>

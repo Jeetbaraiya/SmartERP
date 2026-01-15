@@ -199,7 +199,7 @@ $recent_requests = $conn->query($recent_sql);
                     <div class="d-flex align-items-center gap-3">
                         <div class="text-end d-none d-md-block">
                             <div class="fw-800 text-main"><?php echo $_SESSION['username'] ?? 'Admin'; ?></div>
-                            <div class="small text-muted fw-600">Level <?php echo $_SESSION['level']; ?> Admin</div>
+                          <!-- <class="small text-muted fw-600">Level <?php echo $_SESSION['level']; ?> Admin</div> -->
                         </div>
                         <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-800"
                             style="width: 48px; height: 48px; font-size: 1.2rem;">
@@ -222,8 +222,9 @@ $recent_requests = $conn->query($recent_sql);
                         else
                             $greeting = 'Hello';
                         ?>
-                        <h1 class="display-6 fw-800 mb-2"><?php echo $greeting; ?>, Admin!</h1>
-                        <p class="lead opacity-75 fw-500 mb-0">Here is what is happening in your residence today.</p>
+                        <h1 class="display-6 fw-800 mb-2 text-white"><?php echo $greeting; ?>, Admin!</h1>
+                        <p class="lead opacity-75 fw-500 mb-0 text-white">Here is what is happening in your residence
+                            today.</p>
                     </div>
                     <!-- Glassy date box -->
                     <div class="p-4 rounded-4 shadow-sm"

@@ -1,6 +1,8 @@
 <?php
 // user/dashboard.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once '../config/db.php';
 
 // Check User
@@ -8,6 +10,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
     header("Location: ../auth/login.php");
     exit();
 }
+
+include 'includes/auto_expire.php';
 
 $user_id = $_SESSION['user_id'];
 
@@ -313,7 +317,8 @@ $notices = $conn->query("SELECT * FROM notices ORDER BY created_at DESC LIMIT 3"
 
                         $firstName = explode(' ', $_SESSION['name'])[0];
                         ?>
-                        <h1 class="display-6 fw-800 mb-2"><span id="greeting-text"><?php echo $greeting; ?></span>,
+                        <h1 class="display-6 fw-800 mb-2 text-white"><span
+                                id="greeting-text"><?php echo $greeting; ?></span>,
                             <?php echo $firstName; ?>!
                         </h1>
                         <script>
@@ -329,7 +334,8 @@ $notices = $conn->query("SELECT * FROM notices ORDER BY created_at DESC LIMIT 3"
                             updateGreeting(); // Run immediately
                             setInterval(updateGreeting, 60000); // Run every minute
                         </script>
-                        <p class="lead opacity-75 fw-500 mb-0">Manage your home, book services, and stay secure.</p>
+                        <p class="lead opacity-75 fw-500 mb-0 text-white">Manage your home, book services, and stay
+                            secure.</p>
                     </div>
                     <!-- Glassy date box -->
                     <div class="p-4 rounded-4 shadow-sm"

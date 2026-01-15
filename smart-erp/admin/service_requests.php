@@ -15,10 +15,46 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
     $id = intval($_GET['id']);
     $action = $_GET['action'];
 
-    $req = $conn->query("SELECT approval_stage, status FROM service_requests WHERE id=$id")->fetch_assoc();
+    $req = $conn->query("SELECT approval_stage, status, booking_date, booking_slot FROM service_requests WHERE id=$id")->fetch_assoc();
 
     if ($req) {
+        $is_expired = false;
+        if ($req['status'] == 'pending') {
+            $booking_date = $req['booking_date'];
+
+            // Fix: Check against End Time instead of Start Time
+            // Allows admin to approve request DURING the slot (e.g. at 11:30 for 11-12 slot)
+            $slot_parts = explode('-', $req['booking_slot']);
+            $end_hour = 0;
+
+            if (count($slot_parts) >= 2) {
+                // Extract End Hour (e.g., "12" from "11:00-12:00")
+                $end_hour = intval(trim(explode(':', $slot_parts[1])[0]));
+            } else {
+                // Fallback: Start Hour + 1
+                $end_hour = intval(explode(':', $req['booking_slot'])[0]) + 1;
+            }
+
+            if (strtotime($booking_date) < strtotime('today')) {
+                $is_expired = true;
+            } elseif (strtotime($booking_date) == strtotime('today')) {
+                // Expire only if Current Hour has reached/passed the End Hour
+                // e.g. Slot 11-12. End=12. Current=11. 12 <= 11 (False, Active).
+                // Current=12. 12 <= 12 (True, Expired).
+                if ($end_hour <= intval(date('H'))) {
+                    $is_expired = true;
+                }
+            }
+        }
+
         if ($action == 'approve') {
+            if ($is_expired) {
+                // Auto-reject if expired
+                $conn->query("UPDATE service_requests SET status='rejected' WHERE id=$id");
+                header("Location: service_requests.php?msg=expired");
+                exit();
+            }
+
             // Immediate Final Approval (Single-Tier)
             $conn->query("UPDATE service_requests SET approval_stage=0, status='approved' WHERE id=$id");
             /* Deprecated Multi-Stage Logic 
@@ -197,6 +233,12 @@ $requests = $conn->query($sql);
                 <h2 class="fw-800 mb-1">Service Requests</h2>
                 <p class="text-muted fw-600 mb-0">Manage service bookings and approvals.</p>
             </div>
+
+            <?php if (isset($_GET['msg']) && $_GET['msg'] == 'expired'): ?>
+                <div class="alert alert-danger fw-700 shadow-sm mb-0">
+                    <i class="fas fa-clock me-2"></i> Request Denied: Time Slot Expired.
+                </div>
+            <?php endif; ?>
 
             <?php if ($filter_user_name): ?>
                 <div class="bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-3 fw-700">

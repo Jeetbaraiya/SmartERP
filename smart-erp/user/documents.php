@@ -75,6 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['document'])) {
 
     // Validate
     $allowed = ['pdf', 'jpg', 'jpeg', 'png'];
+
+    // Strict typing for Agreements
+    if ($doc_type == 'rental_agreement') {
+        $allowed = ['pdf'];
+    }
+
     if (in_array($file_ext, $allowed)) {
         if (move_uploaded_file($_FILES["document"]["tmp_name"], $target_file)) {
             $sql = "INSERT INTO user_documents (user_id, document_type, file_path, notes) 
@@ -85,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['document'])) {
             }
         }
     }
-    $error = "Invalid file or upload error.";
+    $error = "Invalid document upload. Please upload a valid document that matches the document type.";
 }
 
 // Fetch Documents

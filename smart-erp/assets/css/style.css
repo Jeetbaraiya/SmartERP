@@ -970,3 +970,33 @@ h6,
         transform: translateY(0);
     }
 }
+
+/* Custom Primary Button */
+.btn-primary-custom {
+    background-color: var(--primary);
+    color: white !important;
+    border: none;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-md);
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--primary-hover);
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Global Action Button Style */
+.btn-action {
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    /* Prevent zig-zag due to text wrap */
+}

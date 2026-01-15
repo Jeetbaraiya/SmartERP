@@ -31,3 +31,106 @@
 [12-Jan-2026 21:42:35 Asia/Kolkata] PHP Parse error:  syntax error, unexpected token "endif", expecting end of file in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\admin\includes\sidebar.php on line 98
 [12-Jan-2026 21:52:54 Asia/Kolkata] Mailer Error: SMTP Error: Could not authenticate.
 [12-Jan-2026 21:53:19 Asia/Kolkata] Mailer Error: SMTP Error: Could not authenticate.
+[12-Jan-2026 23:13:28 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[12-Jan-2026 23:13:28 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[12-Jan-2026 23:13:54 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[12-Jan-2026 23:13:54 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[12-Jan-2026 23:22:15 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'admin_comments' in 'field list' in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php:31
+Stack trace:
+#0 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php(31): mysqli->query('UPDATE service_...')
+#1 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\dashboard.php(5): include('C:\\Users\\ASUS\\O...')
+#2 {main}
+  thrown in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php on line 31
+[12-Jan-2026 23:22:18 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'admin_comments' in 'field list' in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php:31
+Stack trace:
+#0 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php(31): mysqli->query('UPDATE service_...')
+#1 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\dashboard.php(5): include('C:\\Users\\ASUS\\O...')
+#2 {main}
+  thrown in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php on line 31
+[12-Jan-2026 23:22:19 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'admin_comments' in 'field list' in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php:31
+Stack trace:
+#0 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php(31): mysqli->query('UPDATE service_...')
+#1 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\dashboard.php(5): include('C:\\Users\\ASUS\\O...')
+#2 {main}
+  thrown in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php on line 31
+[12-Jan-2026 23:22:28 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'admin_comments' in 'field list' in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php:31
+Stack trace:
+#0 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php(31): mysqli->query('UPDATE service_...')
+#1 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\dashboard.php(5): include('C:\\Users\\ASUS\\O...')
+#2 {main}
+  thrown in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php on line 31
+[12-Jan-2026 23:25:04 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'admin_comments' in 'field list' in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php:31
+Stack trace:
+#0 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php(31): mysqli->query('UPDATE service_...')
+#1 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\dashboard.php(14): include('C:\\Users\\ASUS\\O...')
+#2 {main}
+  thrown in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php on line 31
+[12-Jan-2026 23:25:13 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'admin_comments' in 'field list' in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php:31
+Stack trace:
+#0 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php(31): mysqli->query('UPDATE service_...')
+#1 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\dashboard.php(14): include('C:\\Users\\ASUS\\O...')
+#2 {main}
+  thrown in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php on line 31
+[12-Jan-2026 23:26:48 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'admin_comments' in 'field list' in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php:31
+Stack trace:
+#0 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php(31): mysqli->query('UPDATE service_...')
+#1 C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\dashboard.php(14): include('C:\\Users\\ASUS\\O...')
+#2 {main}
+  thrown in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\includes\auto_expire.php on line 31
+[13-Jan-2026 00:16:49 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[13-Jan-2026 00:16:49 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[13-Jan-2026 00:17:31 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[13-Jan-2026 00:17:31 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[13-Jan-2026 00:19:09 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[13-Jan-2026 00:19:09 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[13-Jan-2026 00:21:40 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[13-Jan-2026 00:21:40 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[13-Jan-2026 00:21:48 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[13-Jan-2026 00:21:48 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[13-Jan-2026 11:27:14 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 11:27:14 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 11:27:14 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 11:27:22 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[13-Jan-2026 11:27:22 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[13-Jan-2026 11:29:52 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[13-Jan-2026 11:29:52 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[13-Jan-2026 11:33:08 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 11:33:08 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 11:33:08 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 11:34:28 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 11:34:54 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 11:34:54 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 11:34:54 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 11:35:00 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 11:40:10 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 11:40:10 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 11:40:10 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 11:40:20 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 11:44:19 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 11:44:19 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 11:44:19 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 11:44:31 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:04:24 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:04:24 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 12:04:24 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 12:04:32 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:07:21 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:07:21 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 12:07:21 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 12:14:41 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:14:41 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 12:14:41 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 12:15:21 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:15:25 Asia/Kolkata] Mailer Error: SMTP Error: Could not authenticate.
+[13-Jan-2026 12:17:27 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:17:27 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 12:17:27 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 12:17:33 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:22:48 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:22:48 Asia/Kolkata] PHP Warning:  Undefined variable $success in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 371
+[13-Jan-2026 12:22:48 Asia/Kolkata] PHP Warning:  Undefined variable $error in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 401
+[13-Jan-2026 12:22:53 Asia/Kolkata] PHP Warning:  Undefined variable $price_formatted in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\request_service.php on line 39
+[13-Jan-2026 12:25:43 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[13-Jan-2026 12:25:43 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
+[13-Jan-2026 12:26:43 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 382
+[13-Jan-2026 12:26:43 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\ASUS\OneDrive\Desktop\sem 4 project\smart-erp\user\profile.php on line 388
