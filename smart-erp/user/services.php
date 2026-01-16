@@ -238,7 +238,7 @@ $total_discount_percent = floatval($disc_row['total_percent']);
                     <div class="col-xl-4 col-md-6 service-item">
                         <div class="card-custom">
                             <div>
-                                <div class="d-flex justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
                                     <?php
                                     // Include Icon Helper securely
                                     $icon_helper_path = __DIR__ . '/../utils/icons.php';
@@ -249,64 +249,65 @@ $total_discount_percent = floatval($disc_row['total_percent']);
                                         $icon = 'fa-concierge-bell';
                                     }
                                     ?>
-                                    <i class="fas <?php echo $icon; ?>"></i>
+                                    <div class="icon-box">
+                                        <i class="fas <?php echo $icon; ?>"></i>
+                                    </div>
+                                    <?php if ($row['price'] > 500): ?>
+                                        <span
+                                            class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 fw-700">Premium</span>
+                                    <?php endif; ?>
                                 </div>
-                                <?php if ($row['price'] > 500): ?>
-                                    <span
-                                        class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 fw-700">Premium</span>
-                                <?php endif; ?>
+
+                                <h4 class="fw-800 mb-2 service-name"><?php echo $row['name']; ?></h4>
+                                <p class="text-muted small fw-600 mb-4"><?php echo $row['description']; ?></p>
                             </div>
+                            <div>
+                                <?php
+                                $price = $row['price'];
+                                $savings = 0;
+                                $original_price = $price;
+                                $has_discount = false;
 
-                            <h4 class="fw-800 mb-2 service-name"><?php echo $row['name']; ?></h4>
-                            <p class="text-muted small fw-600 mb-4"><?php echo $row['description']; ?></p>
-                        </div>
-                        <div>
-                            <?php
-                            $price = $row['price'];
-                            $savings = 0;
-                            $original_price = $price;
-                            $has_discount = false;
+                                // Use the pre-fetched total_discount_percent
+                                if (isset($total_discount_percent) && $total_discount_percent > 0 && $total_discount_percent < 100) {
+                                    $factor = 1 - ($total_discount_percent / 100);
+                                    $original_price = $price / $factor;
+                                    $savings = $original_price - $price;
+                                    $has_discount = true;
+                                }
+                                ?>
 
-                            // Use the pre-fetched total_discount_percent
-                            if (isset($total_discount_percent) && $total_discount_percent > 0 && $total_discount_percent < 100) {
-                                $factor = 1 - ($total_discount_percent / 100);
-                                $original_price = $price / $factor;
-                                $savings = $original_price - $price;
-                                $has_discount = true;
-                            }
-                            ?>
-
-                            <div class="d-flex align-items-end gap-2 mb-4">
-                                <h3 class="fw-900 text-primary mb-0">₹<?php echo number_format($price); ?></h3>
-                                <?php if ($has_discount): ?>
-                                    <small
-                                        class="text-muted text-decoration-line-through fw-600 mb-1">₹<?php echo number_format($original_price); ?></small>
-                                <?php endif; ?>
-                            </div>
-
-                            <?php if ($has_discount && $savings > 0): ?>
-                                <div
-                                    class="small fw-700 text-success mb-3 p-2 bg-success bg-opacity-10 rounded-3 d-inline-block">
-                                    <i class="fas fa-arrow-down me-1"></i> Save ₹<?php echo number_format($savings); ?>
+                                <div class="d-flex align-items-end gap-2 mb-4">
+                                    <h3 class="fw-900 text-primary mb-0">₹<?php echo number_format($price); ?></h3>
+                                    <?php if ($has_discount): ?>
+                                        <small
+                                            class="text-muted text-decoration-line-through fw-600 mb-1">₹<?php echo number_format($original_price); ?></small>
+                                    <?php endif; ?>
                                 </div>
-                            <?php endif; ?>
 
-                            <a href="request_service.php?id=<?php echo $row['id']; ?>"
-                                class="btn btn-premium d-flex align-items-center justify-content-center gap-2">
-                                Book Now <i class="fas fa-arrow-right"></i>
-                            </a>
+                                <?php if ($has_discount && $savings > 0): ?>
+                                    <div
+                                        class="small fw-700 text-success mb-3 p-2 bg-success bg-opacity-10 rounded-3 d-inline-block">
+                                        <i class="fas fa-arrow-down me-1"></i> Save ₹<?php echo number_format($savings); ?>
+                                    </div>
+                                <?php endif; ?>
+
+                                <a href="request_service.php?id=<?php echo $row['id']; ?>"
+                                    class="btn btn-premium d-flex align-items-center justify-content-center gap-2">
+                                    Book Now <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endwhile; ?>
-    </div>
+                <?php endwhile; ?>
+            </div>
 
-    <div id="noResults" class="text-center py-5 d-none">
-        <i class="fas fa-search fa-3x text-muted mb-3 opacity-25"></i>
-        <h5 class="fw-bold text-muted">No services found</h5>
-        <p class="text-muted small">Try searching for something else like 'cleaning' or 'repair'</p>
-    </div>
-    </main>
+            <div id="noResults" class="text-center py-5 d-none">
+                <i class="fas fa-search fa-3x text-muted mb-3 opacity-25"></i>
+                <h5 class="fw-bold text-muted">No services found</h5>
+                <p class="text-muted small">Try searching for something else like 'cleaning' or 'repair'</p>
+            </div>
+        </main>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
